@@ -1,0 +1,67 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: deployment-greetings
+  namespace: greetings-channel-ns
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: greetings-app
+    subApp: greetings-channel
+spec:
+  template:
+    kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: greetings
+    spec:
+      selector:
+        matchLabels:
+          app: greetings-app
+          subApp: greetings-channel        
+          comp: greetings
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: greetings-app
+            subApp: greetings-channel        
+            comp: greetings
+        spec:
+          containers:
+            - name: my-container
+              image: gandhicloud/greetings
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 9092
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: service-greetings
+  namespace: greetings-channel-ns
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: greetings-app
+    subApp: greetings-channel
+spec:
+  template:
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: greetings
+      labels:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: greetings
+    spec:
+      type: NodePort
+      ports:
+        - name: my-http
+          port: 9092
+          nodePort: 32422
+      selector:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: greetings

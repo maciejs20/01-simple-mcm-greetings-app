@@ -1,0 +1,18 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: greetings
+  namespace: greetings-subscription-ns
+  labels:
+    app: greetings-app
+    subApp: greetings-subscription
+spec:
+  selector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - greetings-app
+  componentKinds:
+  - group: app.ibm.com
+    kind: Subscription

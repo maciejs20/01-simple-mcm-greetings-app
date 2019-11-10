@@ -1,0 +1,14 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: greetings
+  namespace: greetings-subscription-ns
+  labels:
+    app: greetings-app
+    subApp: greetings-subscription
+spec:
+  clusterReplicas: 1
+  clusterLabels:
+    matchLabels:
+      name: ibmocpa
+      # region: EU
