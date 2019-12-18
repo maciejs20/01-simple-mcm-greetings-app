@@ -14,6 +14,11 @@ spec:
     apiVersion: apps/v1
     metadata:
       name: weather
+      namespace: greetings-app-ns
+      labels:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: weather
     spec:
       selector:
         matchLabels:
@@ -51,6 +56,7 @@ spec:
     apiVersion: v1
     metadata:
       name: weather
+      namespace: greetings-app-ns
       labels:
         app: greetings-app
         subApp: greetings-channel        

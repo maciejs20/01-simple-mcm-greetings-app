@@ -13,8 +13,3 @@ spec:
       name: greetings
       kind: PlacementRule
       group: app.ibm.com
-  overrides:
-  - clusterName: "/"
-    clusterOverrides:
-    - path: "metadata.namespace"
-      value: greetings-app-ns

@@ -9,3 +9,5 @@ metadata:
 spec:
   type: Namespace
   pathname: greetings-channel-ns
+  sourceNamespaces:
+    - greetings-channel-ns

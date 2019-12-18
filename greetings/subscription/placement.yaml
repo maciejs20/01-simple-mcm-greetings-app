@@ -10,5 +10,5 @@ spec:
   clusterReplicas: 1
   clusterLabels:
     matchLabels:
-      name: ibmocpa
-      # region: EU
+      name: gandhi
+      # region: US
