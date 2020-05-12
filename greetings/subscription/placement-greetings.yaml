@@ -10,5 +10,14 @@ spec:
   clusterReplicas: 1
   clusterLabels:
     matchLabels:
-      name: gandhi
-      # region: US
+      cloud: IBM
+      region: Baletowa
+#---
+#cloud=IBM
+#environment=ST_DMZ
+#name=spx-ocp-c02
+#region=Baletowa
+#---
+#environment=ST_CORP
+#name=spx-ocp-c01
+#region=Grodzisk

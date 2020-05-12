@@ -1,0 +1,29 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: route-greetings
+  namespace: greetings-channel-ns
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: greetings-app
+    subApp: greetings-channel
+spec:
+  template:
+    kind: Route
+    apiVersion: v1
+    metadata:
+      name: greetings
+      namespace: greetings-app-ns
+      labels:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: greetings
+    spec:
+      host: greetings
+      port:
+        targetPort: http
+      to:
+        kind: Service
+        name: greetings
+        weight: 100

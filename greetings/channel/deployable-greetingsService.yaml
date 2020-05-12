@@ -1,0 +1,31 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: service-greetings
+  namespace: greetings-channel-ns
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: greetings-app
+    subApp: greetings-channel
+spec:
+  template:
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: greetings
+      namespace: greetings-app-ns
+      labels:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: greetings
+    spec:
+      type: NodePort
+      ports:
+        - name: my-http
+          port: 9092
+          nodePort: 32422
+      selector:
+        app: greetings-app
+        subApp: greetings-channel        
+        comp: greetings
